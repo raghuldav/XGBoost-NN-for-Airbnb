@@ -1,4 +1,4 @@
-# Assignment4
+ # Assignment4
 
 XGBoost vs Neural Networks
 EAS 510 – Assignment 4
@@ -34,7 +34,7 @@ Label encoding of the important categorical variables.
 3. **Modeling and evaluation**  
    - Trains **per-city models**: XGBoost, NN_v1, NN_v2.  
    - Trains **tier-level models**: big-tier, medium-tier, small-tier.  
-   - Performs **cross-tier neural network analysis**, training a composite NN for each tier and evaluating it on different tiers.  
+   - Performs and analyze **cross-tier neural network analysis**, training a composite NN for each tier and evaluating it on different tiers.  
    - Compares **RMSE**, **MAE**, and **R²** for all settings.
   
 4. **Analysis conclusiones**
@@ -101,7 +101,7 @@ The downloader always picks the latest snapshot available from InsideAirbnb at t
 | Salem-OR          | Small  | Sep 2025             | 531            |
 | Columbus          | Small  | Sep 2025             | 2,877          |
 
-## 4. Summary of Preprocessing and Feature Engineering
+## 4. Summary and analysis of Preprocessing and Feature Engineering
 
 ### 4.1. Core Numeric Cleaning
 Price cleaning
@@ -109,9 +109,9 @@ Removes $ and, from price and cast to float.
 
 Drops rows with missing price.
 
-Parsing of bathrooms (bathrooms_text)
+Parsing of bathrooms is done (using bathrooms_text)
 
-Retrieves numeric values from text, such as "1.5 baths" back to 1.5.
+Retrieves and conversion numeric values (numbers basically) from each and every text in the data.
 
 Missing values are imputed with the median.
 
@@ -187,7 +187,7 @@ All engineered features above
 
 The models learn to predict log(price) from this enriched, cleaned feature set.
 
-## 5. Key Discoveries - XGBoost vs. Neural Networks
+## 5. Key Discoveries and findings in here - XGBoost vs. Neural Networks
 
 ### 5.1. Models by City Performance
 
@@ -214,32 +214,29 @@ NN_v1 performance degrades substantially in small cities and especially in Salem
 
 NN_v2 improves stability and accuracy compared to NN_v1 in many cities, especially where data is moderately sized, but still does not surpass XGBoost.
 
-Conclusion at city level:
+All twelve cities show that XGBoost outperformed the two models based on neural network design in Total Model accuracy and performance stability through proactive model validation via several techniques.
 
-XGBoost dominates both neural networks across all 12 cities, combining accuracy and stability.
+### 5.2. Relative to their overall populations, the ranking of the cities is based on their relative population sizes. The cities are divided into three categories according to population size.
 
-### 5.2. Each of the listed cities fall into one of three tiers, based on their population size, as shown below: 
+The cities categorized as part of the Top Tier are: Chicago, New York, San Francisco & Los Angeles.
 
- Big Tier Cities are: Los Angeles, New York City, San Francisco, and Chicago.  
+The Medium Tier Cities are: Austin, Denver, Portland & Seattle.
 
- Medium Tier Cities are: Austin, Denver, Portland, and Seattle. 
+The cities in the Small Tier are: Asheville, Columbus, Salem & Santa Cruz County.
 
- The small tier cities are located in Asheville, Columbus, Salem, and Santa Cruz County.
+Training data for XGBoost, NN_v1 & NN_v2 have been combined and organized into separate notebooks for each of the tiers.
 
-Training data for XGBoost, NN_v1, and NN_v2 were combined and grouped in the notebooks for each tier.
+#### Summary and conclusion of Results:
 
-#### Results Summary:
+The XGBoost model had the highest R-squared score and lowest root-mean-square error (RMSE) score. Both NN_v1 and NN_v2 had the same score, but did not reach the XGBoost level of score.
 
-**Big Tier**: The XGBoost model has been and will be the best scoring R square and lowest RMSE. The NN_v1 and NN_v2 score the same but do not score as well as the XGBoost model.
+In the Medium Tier, the XGBoost also provided the highest R-squared score again. The NN_v2 was slightly better than the NN_v1. NN_v1 & NN_v2 both fell significantly short of the XGBoost in terms of score.
 
+In the Small Tier, the XGBoost model outperformed both NN models by considerable margins due to the relatively small and noisy data set available to both NN models.
 
-**Medium Tier:** XGBoost again provided the best results, with the NN_v2 model performing slightly higher than the NN_v1 model. Both NN models significantly trailed compared with XGBoost.
+#### Overall Conclusion by Tier:
 
-**Small Tier:** XGBoost significantly outperformed both NN models due to the noisy distribution and small amount of data available to both NN models.
-
-#### Conclusion by Tier:
-
-XGBoost outperformed the composite tier of large, medium, and small data. The NN models can improve with larger amounts of data but still display lower predictive performance and robusticity when compared with XGBoost.
+The XGBoost model outperforms the totality of large, medium & small data. The NN models would receive improvement as they are provided with larger data sets, but they would still have a substantially lower predictive performance level than the XGBoost Model.
 
 ### 5.3. Cross-Tier Neural Network Generalization**
 
@@ -249,13 +246,15 @@ The purpose of this section is to investigate the extent to which a composite NN
 The macro political tier NN (medium) will be evaluated against both the macro political tier NN (large) and macro political tier NN (small).
 The political small-tier NN is tested on the big-tier and medium-tier NN.
 
-All NN models (NN_v1 and NN_v2) have their metrics summarized and displayed in heatmaps and graphs.
+Overall, the NN_v1 and NN_v2 each have multiple metrics that are visualized in the form of heatmap and graph representations for comparison.
 
-#### Key Findings:
+#### Major Findings:
 
-The big-tier NNs provide good generalization to medium-tier and small-tier NNs.
 
-NN_v2 consistently achieves higher R² and lower RMSE when compared to NN_v1.
+Large Tier NNs provide a large amount of generalization to Medium Tier and Small Tier NNs.
+
+
+NN_v2 also results in more accurate R² and RMSE values than NN_v1.
 
 Medium → Big
 
