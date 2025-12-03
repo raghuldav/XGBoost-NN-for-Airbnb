@@ -296,5 +296,9 @@ Best R² and RMSE across all 12 cities.
 
 Best performance on big, medium, and small tier composites.
 Most robust and stable model in this assignment. Neural Network comparison (NN_v1 vs NN_v2) NN_v2, with BatchNorm and Dropout, is a clear improvement over NN_v1 in most cases: Better cross-tier generalization. Less prone to catastrophic failures under distribution shift. 
+
 NN_v1 is competitive only in large data scenarios and fails badly in some small-tier settings. Preprocessing impact Consistent cleaning (price parsing, bathroom numeric extraction, missing value handling, IQR winsorization) and feature engineering (price_per_bedroom, avg_review_score, is_entire_home, amenities_count, density-style features) are crucial for stabilizing both tree-based and neural models. 
-Before/after inspections and boxplots show that distributions become more balanced and amenable to learning after preprocessing. General lesson for tabular regression For rich, structured tabular data like Airbnb listings, XGBoost remains a very strong baseline. Neural networks can be improved with deeper architectures and regularization but still require careful design and large, diverse data to approach tree-based performance.
+
+Before/after inspections and boxplots show that distributions become more balanced and amenable to learning after preprocessing. General lesson for tabular regression For rich, structured tabular data like Airbnb listings, XGBoost remains a very strong baseline. 
+
+Neural networks can be improved with deeper architectures and regularization but still require careful design and large, diverse data to approach tree-based performance.
